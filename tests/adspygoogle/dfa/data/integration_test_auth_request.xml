@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsi3="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd3="http://www.w3.org/2001/XMLSchema"
+>
+<SOAP-ENV:Header>
+<RequestHeader>
+<applicationName>%(appName)s %(libSig)s</applicationName>
+</RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<ns1:authenticate xmlns:dfa="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:ns1="http://www.doubleclick.net/dfa-api/%(version)s">
+<username>%(username)s</username>
+<password xsi3:null="1" />
+</ns1:authenticate>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

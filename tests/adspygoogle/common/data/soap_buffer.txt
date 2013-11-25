@@ -1,0 +1,38 @@
+*** Outgoing HTTP headers **********************************************
+POST /api/adwords/cm/v201209/AdGroupAdService HTTP/1.0
+Host:adwords.google.com
+User-agent:SOAPpy 0.12.0 (pywebsvcs.sf.net),gzip
+XML-parser: PyXML v0.8.3
+Content-type:text/xml; charset="UTF-8"
+Content-length:876
+Accept-Encoding:gzip
+Content-Encoding:gzip
+SOAPAction:"mutate"
+************************************************************************
+*** Outgoing SOAP ******************************************************
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsi3="http://www.w3.org/2001/XMLSchema-instance"
+>
+<SOAP-ENV:Header xmlns="https://adwords.google.com/api/adwords/cm/v201209" xmlns:cm="https://adwords.google.com/api/adwords/cm/v201209">
+<RequestHeader>
+</RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<mutate xmlns="https://adwords.google.com/api/adwords/cm/v201209" xmlns:cm="https://adwords.google.com/api/adwords/cm/v201209">
+<operations xsi3:type="cm:AdGroupAdOperation">
+</operations>
+</mutate>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+************************************************************************
+*** Incoming HTTP headers **********************************************
+HTTP/1.? 500 Internal Server Error
+Content-Type: text/xml; charset=UTF-8
+************************************************************************
+*** Incoming SOAP ******************************************************
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Header><ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201209"><requestId>0004d4ff4049f7c80a34b08200004b1d</requestId><serviceName>AdGroupAdService</serviceName><methodName>mutate</methodName><operations>1</operations><responseTime>358</responseTime><units>40</units></ResponseHeader></soap:Header><soap:Body><soap:Fault><faultcode>soap:Server</faultcode><faultstring>[AdPolicyError{super=PolicyViolationError.POLICY_ERROR @ operations[0].operand.ad.headline, key=PolicyViolationKey{policyName=capitalization,violatingText=AAAAAAAAAAAAAAAAAAAAA}, externalPolicyName=[Capitalization] Excessive capitalization, externalPolicyUrl=, externalPolicyDescription=Please correct the capitalization in the following phrase(s): 'AAAAAAAAAAAAAAAAAAAAA', isExemtable=true, violatingParts=[Part{index=0, length=21}]}]]</faultstring><detail><ApiExceptionFault xmlns="https://adwords.google.com/api/adwords/cm/v201209"><message>[AdPolicyError{super=PolicyViolationError.POLICY_ERROR @ operations[0].operand.ad.headline, key=PolicyViolationKey{policyName=capitalization,violatingText=AAAAAAAAAAAAAAAAAAAAA}, externalPolicyName=[Capitalization] Excessive capitalization, externalPolicyUrl=, externalPolicyDescription=Please correct the capitalization in the following phrase(s): 'AAAAAAAAAAAAAAAAAAAAA', isExemtable=true, violatingParts=[Part{index=0, length=21}]}]]</message><ApplicationException.Type>ApiException</ApplicationException.Type><errors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="PolicyViolationError"><fieldPath>operations[0].operand.ad.headline</fieldPath><trigger></trigger><errorString>PolicyViolationError.POLICY_ERROR</errorString><ApiError.Type>PolicyViolationError</ApiError.Type><key><policyName>capitalization</policyName><violatingText>AAAAAAAAAAAAAAAAAAAAA</violatingText></key><externalPolicyName>[Capitalization] Excessive capitalization</externalPolicyName><externalPolicyUrl></externalPolicyUrl><externalPolicyDescription>Please correct the capitalization in the following phrase(s): 'AAAAAAAAAAAAAAAAAAAAA'</externalPolicyDescription><isExemptable>true</isExemptable><violatingParts><index>0</index><length>21</length></violatingParts></errors></ApiExceptionFault></detail></soap:Fault></soap:Body></soap:Envelope>
+************************************************************************

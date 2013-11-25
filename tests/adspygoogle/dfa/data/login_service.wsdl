@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:intf="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Mar 02, 2009 (07:08:06 PST)-->
+ <wsdl:types>
+  <schema targetNamespace="http://www.doubleclick.net/dfa-api/%(version)s" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="Base">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="UserBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="active" type="xsd:boolean"/>
+       <element name="apiUser" type="xsd:boolean"/>
+       <element name="email" nillable="true" type="soapenc:string"/>
+       <element name="languageId" type="xsd:long"/>
+       <element name="networkId" type="xsd:long"/>
+       <element name="password" nillable="true" type="soapenc:string"/>
+       <element name="subnetworkId" type="xsd:long"/>
+       <element name="userGroupId" type="xsd:long"/>
+       <element name="userLevelId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UserProfile">
+    <complexContent>
+     <extension base="impl:UserBase">
+      <sequence>
+       <element name="lastAccessTime" nillable="true" type="xsd:dateTime"/>
+       <element name="networkName" nillable="true" type="soapenc:string"/>
+       <element name="token" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApiException">
+    <sequence>
+     <element name="errorCode" type="xsd:long"/>
+     <element name="errorMessage" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ChangePasswordRequest">
+    <sequence>
+     <element name="confirmPassword" nillable="true" type="soapenc:string"/>
+     <element name="newPassword" nillable="true" type="soapenc:string"/>
+     <element name="oldPassword" nillable="true" type="soapenc:string"/>
+     <element name="token" nillable="true" type="soapenc:string"/>
+     <element name="username" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="authenticateResponse">
+
+      <wsdl:part name="authenticateReturn" type="impl:UserProfile">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changePasswordRequest">
+
+      <wsdl:part name="changePasswordRequest" type="impl:ChangePasswordRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateRequest">
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="password" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changePasswordResponse">
+
+      <wsdl:part name="changePasswordReturn" type="impl:UserProfile">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="impersonateNetworkResponse">
+
+      <wsdl:part name="impersonateNetworkReturn" type="impl:UserProfile">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="impersonateUserRequest">
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="token" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="userToImpersonate" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ApiException">
+
+      <wsdl:part name="fault" type="impl:ApiException">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="impersonateNetworkRequest">
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="token" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="networkId" type="xsd:long">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="impersonateUserResponse">
+
+      <wsdl:part name="impersonateUserReturn" type="impl:UserProfile">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="LoginRemote">
+
+      <wsdl:operation name="impersonateUser" parameterOrder="username token userToImpersonate">
+
+         <wsdl:input message="impl:impersonateUserRequest" name="impersonateUserRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:impersonateUserResponse" name="impersonateUserResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="impersonateNetwork" parameterOrder="username token networkId">
+
+         <wsdl:input message="impl:impersonateNetworkRequest" name="impersonateNetworkRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:impersonateNetworkResponse" name="impersonateNetworkResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword" parameterOrder="changePasswordRequest">
+
+         <wsdl:input message="impl:changePasswordRequest" name="changePasswordRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changePasswordResponse" name="changePasswordResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticate" parameterOrder="username password">
+
+         <wsdl:input message="impl:authenticateRequest" name="authenticateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:authenticateResponse" name="authenticateResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="loginSoapBinding" type="impl:LoginRemote">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="impersonateUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="impersonateUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="impersonateUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="impersonateNetwork">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="impersonateNetworkRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="impersonateNetworkResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changePasswordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changePasswordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="LoginRemoteService">
+
+      <wsdl:port binding="impl:loginSoapBinding" name="login">
+
+         <wsdlsoap:address location="https://advertisersapi.doubleclick.com/%(version)s/api/dfa-api/login"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

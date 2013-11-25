@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsi3="http://www.w3.org/2001/XMLSchema-instance"
+>
+<SOAP-ENV:Header xmlns="https://adwords.google.com/api/adwords/cm/%(version)s" xmlns:cm="https://adwords.google.com/api/adwords/cm/%(version)s">
+<RequestHeader>
+<cm:developerToken>%(developerToken)s</cm:developerToken>
+<cm:userAgent>%(userAgent)s%(libSig)s</cm:userAgent>
+<cm:clientCustomerId>%(clientCustomerId)s</cm:clientCustomerId>
+</RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<get xmlns="https://adwords.google.com/api/adwords/cm/%(version)s" xmlns:cm="https://adwords.google.com/api/adwords/cm/%(version)s">
+<serviceSelector xsi3:type="cm:Selector">
+<cm:fields>Id</cm:fields>
+<cm:fields>Name</cm:fields>
+<cm:fields>Status</cm:fields>
+<cm:predicates xsi3:type="cm:Predicate">
+<cm:field></cm:field>
+</cm:predicates>
+<cm:paging xsi3:type="cm:Paging">
+<cm:startIndex>100</cm:startIndex>
+<cm:numberResults>100</cm:numberResults>
+</cm:paging>
+</serviceSelector>
+</get>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
