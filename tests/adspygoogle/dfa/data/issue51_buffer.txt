@@ -1,0 +1,94 @@
+*** Outgoing HTTP headers **********************************************
+POST /v1.19/api/dfa-api/spotlight HTTP/1.0
+Host:advertisersapitest.doubleclick.net
+User-agent:SOAPpy 0.12.0 (pywebsvcs.sf.net),gzip
+Content-type:text/xml; charset="UTF-8"
+Content-length:1207
+Accept-Encoding:gzip
+SOAPAction:"saveSpotlightActivityGroup"
+************************************************************************
+*** Outgoing SOAP ******************************************************
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsd3="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi3="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+>
+<SOAP-ENV:Header>
+<RequestHeader>
+<applicationName>lib-py  (DfaApi-Python/2.3.2, Common-Python/3.0.11, Python/2.7)</applicationName>
+</RequestHeader>
+<Security xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+<UsernameToken>
+<Username xsi3:type="xsd3:string">username</Username>
+<Password xsi3:type="xsd3:string">password</Password>
+</UsernameToken>
+</Security>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<ns1:saveSpotlightActivityGroup xmlns:ns1="http://www.doubleclick.net/dfa-api/v1.19" xmlns:dfa="http://www.doubleclick.net/dfa-api/v1.19">
+<spotlightActivityGroup xsi3:type="dfa:SpotlightActivityGroup">
+<dfa:name>INSERT_GROUP_NAME_HERE</dfa:name>
+<dfa:groupType>1</dfa:groupType>
+<dfa:spotlightConfigurationId>12345</dfa:spotlightConfigurationId>
+</spotlightActivityGroup>
+</ns1:saveSpotlightActivityGroup>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+************************************************************************
+*** Incoming HTTP headers **********************************************
+HTTP/1.? 500 Internal Server Error
+Content-Type: text/xml;charset=utf-8
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Mon, 01 Apr 2013 14:30:46 GMT
+Server: Google
+************************************************************************
+*** Incoming SOAP ******************************************************
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><ns1:ResponseHeader soapenv:actor="http://schemas.xmlsoap.org/soap/actor/next" soapenv:mustUnderstand="0" xmlns:ns1="http://www.doubleclick.net/dfa-api/v1.19"><ns1:requestId>c664fefe-a3fe-4c8b-8544-3a782ed56d88</ns1:requestId><ns1:responseTime>31</ns1:responseTime></ns1:ResponseHeader></soapenv:Header><soapenv:Body><soapenv:Fault><faultcode>soapenv:Server.userException</faultcode><faultstring>8304 - That Activity Group Name or Tag String already exists.</faultstring><detail><com.doubleclick.dart.appserver.dfa.dto.api.ApiException xsi:type="ns1:ApiException" xmlns:ns1="http://www.doubleclick.net/dfa-api/v1.19"><errorCode xsi:type="xsd:long">8304</errorCode><errorMessage xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">That Activity Group Name or Tag String already exists.</errorMessage><message xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">That Activity Group Name or Tag String already exists.</message></com.doubleclick.dart.appserver.dfa.dto.api.ApiException><ns2:stackTrace xmlns:ns2="http://xml.apache.org/axis/">8304 - That Activity Group Name or Tag String already exists.
+  at com.doubleclick.dart.appserver.dfa.service.api.impl.GenericService.handleExceptionForApi(GenericService.java:41)
+  at com.doubleclick.dart.appserver.dfa.service.api.impl.SpotlightRemote.saveSpotlightActivityGroup(SpotlightRemote.java:289)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+  at java.lang.reflect.Method.invoke(Method.java:597)
+  at org.apache.axis.providers.java.RPCProvider.invokeMethod(RPCProvider.java:397)
+  at org.apache.axis.providers.java.RPCProvider.processMessage(RPCProvider.java:186)
+  at org.apache.axis.providers.java.JavaProvider.invoke(JavaProvider.java:323)
+  at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+  at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+  at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+  at org.apache.axis.handlers.soap.SOAPService.invoke(SOAPService.java:454)
+  at org.apache.axis.server.AxisServer.invoke(AxisServer.java:281)
+  at org.apache.axis.transport.http.AxisServlet.doPost(AxisServlet.java:699)
+  at com.doubleclick.dart.appserver.dfa.util.axis.DartAxisServlet.doPost(DartAxisServlet.java:96)
+  at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+  at org.apache.axis.transport.http.AxisServletBase.service(AxisServletBase.java:327)
+  at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:304)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+  at com.doubleclick.dart.appserver.dfa.util.servlet.BasicFilter.doFilter(BasicFilter.java:45)
+  at com.doubleclick.dart.appserver.dfa.util.servlet.DfaRequestFilter.doFilter(DfaRequestFilter.java:60)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+  at org.springframework.orm.hibernate3.support.OpenSessionInViewFilter.doFilterInternal(OpenSessionInViewFilter.java:198)
+  at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:75)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+  at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:240)
+  at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:164)
+  at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:462)
+  at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+  at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+  at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:563)
+  at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+  at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:399)
+  at org.apache.coyote.http11.Http11AprProcessor.process(Http11AprProcessor.java:306)
+  at org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler.process(Http11AprProtocol.java:322)
+  at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1732)
+  at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+  at java.lang.Thread.run(Thread.java:619)
+</ns2:stackTrace><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">thdtdfa6as05-new</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+************************************************************************

@@ -1,0 +1,2001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This cached WSDL is used for testing purposes. -->
+<wsdl:definitions targetNamespace="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:intf="http://www.doubleclick.net/dfa-api/%(version)s" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Mar 02, 2009 (07:08:06 PST)-->
+ <wsdl:types>
+  <schema targetNamespace="http://www.doubleclick.net/dfa-api/%(version)s" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="Base">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="LookbackWindow">
+    <sequence>
+     <element name="postClickEventLookbackWindow" type="xsd:int"/>
+     <element name="postImpressionEventLookbackWindow" type="xsd:int"/>
+     <element name="richMediaEventLookbackWindow" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="PricingPeriod">
+    <sequence>
+     <element name="comments" nillable="true" type="soapenc:string"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="rateOrCost" type="xsd:double"/>
+     <element name="startDate" nillable="true" type="xsd:dateTime"/>
+     <element name="units" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPricingPeriod">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PricingPeriod[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PricingSchedule">
+    <sequence>
+     <element name="capCostOption" type="xsd:int"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="flighted" type="xsd:boolean"/>
+     <element name="pricingPeriods" nillable="true" type="impl:ArrayOfPricingPeriod"/>
+     <element name="pricingType" type="xsd:int"/>
+     <element name="startDate" nillable="true" type="xsd:dateTime"/>
+     <element name="testingStartDate" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="TagSettingsBase">
+    <sequence>
+     <element name="additionalKeyValues" nillable="true" type="soapenc:string"/>
+     <element name="includeClickTrackingStringInTags" type="xsd:boolean"/>
+     <element name="keywordHandlingOption" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_int">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:int[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="TagSettings">
+    <complexContent>
+     <extension base="impl:TagSettingsBase">
+      <sequence>
+       <element name="tagTypes" nillable="true" type="impl:ArrayOf_xsd_int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Placement">
+    <complexContent>
+     <extension base="impl:PlacementBase">
+      <sequence>
+       <element name="archived" type="xsd:boolean"/>
+       <element name="campaignId" type="xsd:long"/>
+       <element name="comments" nillable="true" type="soapenc:string"/>
+       <element name="contentCategoryId" type="xsd:long"/>
+       <element name="dfaSiteId" type="xsd:long"/>
+       <element name="keyname" nillable="true" type="soapenc:string"/>
+       <element name="lookbackWindow" nillable="true" type="impl:LookbackWindow"/>
+       <element name="paymentAccepted" type="xsd:boolean"/>
+       <element name="placementGroupId" type="xsd:long"/>
+       <element name="placementStrategyId" type="xsd:long"/>
+       <element name="placementType" type="xsd:int"/>
+       <element name="pricingSchedule" nillable="true" type="impl:PricingSchedule"/>
+       <element name="siteId" type="xsd:long"/>
+       <element name="sizeId" type="xsd:long"/>
+       <element name="spotlightActivityId" type="xsd:long"/>
+       <element name="tagSettings" nillable="true" type="impl:TagSettings"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType abstract="true" name="SaveResult">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementSaveResult">
+    <complexContent>
+     <extension base="impl:SaveResult">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApiException">
+    <sequence>
+     <element name="errorCode" type="xsd:long"/>
+     <element name="errorMessage" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementGroupBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_xsd_long">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:long[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementGroup">
+    <complexContent>
+     <extension base="impl:PlacementGroupBase">
+      <sequence>
+       <element name="archived" type="xsd:boolean"/>
+       <element name="campaignId" type="xsd:long"/>
+       <element name="comments" nillable="true" type="soapenc:string"/>
+       <element name="contentCategoryId" type="xsd:long"/>
+       <element name="dfaSiteId" type="xsd:long"/>
+       <element name="placementGroupType" type="xsd:int"/>
+       <element name="placementIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="placementStrategyId" type="xsd:long"/>
+       <element name="pricingSchedule" nillable="true" type="impl:PricingSchedule"/>
+       <element name="primaryPlacementId" type="xsd:long"/>
+       <element name="siteId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementGroupSaveResult">
+    <complexContent>
+     <extension base="impl:SaveResult">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementGroupType">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementGroupType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementGroupType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementTagCriteria">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="tagOptionIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPlacementTagCriteria">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementTagCriteria[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AdvertiserBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Advertiser">
+    <complexContent>
+     <extension base="impl:AdvertiserBase">
+      <sequence>
+       <element name="advertiserGroupId" type="xsd:long"/>
+       <element name="approved" type="xsd:boolean"/>
+       <element name="hidden" type="xsd:boolean"/>
+       <element name="impressionExchangeEnabled" type="xsd:boolean"/>
+       <element name="inventoryAdvertiser" type="xsd:boolean"/>
+       <element name="networkId" type="xsd:long"/>
+       <element name="spotId" type="xsd:long"/>
+       <element name="subnetworkId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CampaignBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="advertiserId" type="xsd:long"/>
+       <element name="archived" type="xsd:boolean"/>
+       <element name="billingInvoiceNotation" nillable="true" type="soapenc:string"/>
+       <element name="comments" nillable="true" type="soapenc:string"/>
+       <element name="defaultLandingPageId" type="xsd:long"/>
+       <element name="endDate" nillable="true" type="xsd:dateTime"/>
+       <element name="startDate" nillable="true" type="xsd:dateTime"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CampaignSummary">
+    <complexContent>
+     <extension base="impl:CampaignBase">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="AudienceSegment">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="percentageAllocation" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAudienceSegment">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AudienceSegment[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AudienceSegmentGroup">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="audienceSegments" nillable="true" type="impl:ArrayOfAudienceSegment"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAudienceSegmentGroup">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AudienceSegmentGroup[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SpotlightActivityWeight">
+    <sequence>
+     <element name="activityId" type="xsd:long"/>
+     <element name="weight" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfSpotlightActivityWeight">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SpotlightActivityWeight[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CreativeOptimizationConfiguration">
+    <sequence>
+     <element name="minimumCreativeWeight" type="xsd:int"/>
+     <element name="optimizationModelId" type="xsd:int"/>
+     <element name="relativeStrength" type="xsd:int"/>
+     <element name="spotlightActivities" nillable="true" type="impl:ArrayOfSpotlightActivityWeight"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReachReportConfiguration">
+    <sequence>
+     <element name="adTypeFrequencyAndReach" type="xsd:boolean"/>
+     <element name="pageLevelFrequency" type="xsd:boolean"/>
+     <element name="placementFrequency" type="xsd:boolean"/>
+     <element name="siteLevelFrequency" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Campaign">
+    <complexContent>
+     <extension base="impl:CampaignBase">
+      <sequence>
+       <element name="advancedAdServingEnabled" type="xsd:boolean"/>
+       <element name="audienceSegmentGroups" nillable="true" type="impl:ArrayOfAudienceSegmentGroup"/>
+       <element name="creativeGroupIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="creativeOptimizationConfiguration" nillable="true" type="impl:CreativeOptimizationConfiguration"/>
+       <element name="landingPageIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="lookbackWindow" nillable="true" type="impl:LookbackWindow"/>
+       <element name="reachReportConfiguration" nillable="true" type="impl:ReachReportConfiguration"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementAssignment">
+    <sequence>
+     <element name="active" type="xsd:boolean"/>
+     <element name="placementId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPlacementAssignment">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementAssignment[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType abstract="true" name="AdBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="active" type="xsd:boolean"/>
+       <element name="archived" type="xsd:boolean"/>
+       <element name="campaignId" type="xsd:long"/>
+       <element name="comments" nillable="true" type="soapenc:string"/>
+       <element name="endTime" nillable="true" type="xsd:dateTime"/>
+       <element name="placementAssignments" nillable="true" type="impl:ArrayOfPlacementAssignment"/>
+       <element name="sizeId" type="xsd:long"/>
+       <element name="startTime" nillable="true" type="xsd:dateTime"/>
+       <element name="typeId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Country">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="countryCode" nillable="true" type="soapenc:string"/>
+       <element name="secure" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCountry">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Country[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CountryTargetingCriteria">
+    <sequence>
+     <element name="countries" nillable="true" type="impl:ArrayOfCountry"/>
+     <element name="exclude" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ClickThroughUrl">
+    <sequence>
+     <element name="computedClickThroughUrl" nillable="true" type="soapenc:string"/>
+     <element name="customClickThroughUrl" nillable="true" type="soapenc:string"/>
+     <element name="defaultLandingPageUsed" type="xsd:boolean"/>
+     <element name="landingPageId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreativeGroupAssignment">
+    <sequence>
+     <element name="creativeGroup1Id" type="xsd:long"/>
+     <element name="creativeGroup2Id" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="RichMediaExitOverride">
+    <sequence>
+     <element name="clickThroughUrl" nillable="true" type="soapenc:string"/>
+     <element name="exitId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfRichMediaExitOverride">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:RichMediaExitOverride[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CreativeAssignment">
+    <sequence>
+     <element name="active" type="xsd:boolean"/>
+     <element name="alternalteText" nillable="true" type="soapenc:string"/>
+     <element name="clickThroughUrl" nillable="true" type="impl:ClickThroughUrl"/>
+     <element name="creativeGroupAssignment" nillable="true" type="impl:CreativeGroupAssignment"/>
+     <element name="creativeId" type="xsd:long"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="richMediaExitOverrides" nillable="true" type="impl:ArrayOfRichMediaExitOverride"/>
+     <element name="sequence" type="xsd:int"/>
+     <element name="startDate" nillable="true" type="xsd:dateTime"/>
+     <element name="weight" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfCreativeAssignment">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CreativeAssignment[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="MobilePlatform">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMobilePlatform">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:MobilePlatform[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="MobileAd">
+    <complexContent>
+     <extension base="impl:AdBase">
+      <sequence>
+       <element name="countryTargetingCriteria" nillable="true" type="impl:CountryTargetingCriteria"/>
+       <element name="creativeAssignments" nillable="true" type="impl:ArrayOfCreativeAssignment"/>
+       <element name="daysOfWeek" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="deliveryLimit" type="xsd:int"/>
+       <element name="deliveryLimitEnabled" type="xsd:boolean"/>
+       <element name="hardCutOff" type="xsd:boolean"/>
+       <element name="hoursOfDay" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="keywordExpression" nillable="true" type="soapenc:string"/>
+       <element name="mobilePlatforms" nillable="true" type="impl:ArrayOfMobilePlatform"/>
+       <element name="priority" type="xsd:int"/>
+       <element name="ratio" type="xsd:int"/>
+       <element name="userLocalTime" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TrackingAd">
+    <complexContent>
+     <extension base="impl:AdBase">
+      <sequence>
+       <element name="creativeAssignments" nillable="true" type="impl:ArrayOfCreativeAssignment"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ISP">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfISP">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:ISP[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="OSP">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfOSP">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:OSP[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AreaCode">
+    <sequence>
+     <element name="areaCode" type="xsd:long"/>
+     <element name="countryId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfAreaCode">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AreaCode[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="Bandwidth">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfBandwidth">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Bandwidth[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="Browser">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BrowserVersion">
+    <sequence>
+     <element name="browser" nillable="true" type="impl:Browser"/>
+     <element name="majorVersion" type="xsd:int"/>
+     <element name="minorVersion" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfBrowserVersion">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:BrowserVersion[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="City">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="countryId" type="xsd:long"/>
+       <element name="regionId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCity">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:City[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="DesignatedMarketArea">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="internalDmaId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDesignatedMarketArea">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:DesignatedMarketArea[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="DomainNameBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDomainNameBase">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:DomainNameBase[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="DomainType">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfDomainType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:DomainType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="OperatingSystem">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfOperatingSystem">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:OperatingSystem[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="State">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence>
+       <element name="abbreviation" nillable="true" type="soapenc:string"/>
+       <element name="countryId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfState">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:State[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UserListExpression">
+    <sequence>
+     <element name="idExpression" nillable="true" type="soapenc:string"/>
+     <element name="nameExpression" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="TargetableAdBase">
+    <complexContent>
+     <extension base="impl:AdBase">
+      <sequence>
+       <element name="ISPs" nillable="true" type="impl:ArrayOfISP"/>
+       <element name="OSPs" nillable="true" type="impl:ArrayOfOSP"/>
+       <element name="areaCodes" nillable="true" type="impl:ArrayOfAreaCode"/>
+       <element name="audienceSegmentId" type="xsd:long"/>
+       <element name="bandwidths" nillable="true" type="impl:ArrayOfBandwidth"/>
+       <element name="browserVersions" nillable="true" type="impl:ArrayOfBrowserVersion"/>
+       <element name="cities" nillable="true" type="impl:ArrayOfCity"/>
+       <element name="costType" type="xsd:int"/>
+       <element name="countryTargetingCriteria" nillable="true" type="impl:CountryTargetingCriteria"/>
+       <element name="daysOfWeek" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="deliveryLimit" type="xsd:int"/>
+       <element name="deliveryLimitEnabled" type="xsd:boolean"/>
+       <element name="designatedMarketAreas" nillable="true" type="impl:ArrayOfDesignatedMarketArea"/>
+       <element name="domainNames" nillable="true" type="impl:ArrayOfDomainNameBase"/>
+       <element name="domainTypes" nillable="true" type="impl:ArrayOfDomainType"/>
+       <element name="frequencyCap" type="xsd:int"/>
+       <element name="frequencyCapPeriod" type="xsd:long"/>
+       <element name="hardCutOff" type="xsd:boolean"/>
+       <element name="hoursOfDay" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="keywordExpression" nillable="true" type="soapenc:string"/>
+       <element name="operatingSystems" nillable="true" type="impl:ArrayOfOperatingSystem"/>
+       <element name="postalCodes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="priority" type="xsd:int"/>
+       <element name="ratio" type="xsd:int"/>
+       <element name="states" nillable="true" type="impl:ArrayOfState"/>
+       <element name="userListExpression" nillable="true" type="impl:UserListExpression"/>
+       <element name="userLocalTime" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FrequencyCapGroupBase">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FrequencyCapGroup">
+    <complexContent>
+     <extension base="impl:FrequencyCapGroupBase">
+      <sequence>
+       <element name="duration" nillable="true" type="xsd:long"/>
+       <element name="impressions" nillable="true" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfFrequencyCapGroup">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:FrequencyCapGroup[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="RotationGroup">
+    <complexContent>
+     <extension base="impl:TargetableAdBase">
+      <sequence>
+       <element name="assignedFrequencyCapGroups" nillable="true" type="impl:ArrayOfFrequencyCapGroup"/>
+       <element name="creativeAssignments" nillable="true" type="impl:ArrayOfCreativeAssignment"/>
+       <element name="creativeOptimizationEnabled" type="xsd:boolean"/>
+       <element name="rotationType" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ClickTracker">
+    <complexContent>
+     <extension base="impl:AdBase">
+      <sequence>
+       <element name="clickThroughUrl" nillable="true" type="impl:ClickThroughUrl"/>
+       <element name="creativeGroupAssignment" nillable="true" type="impl:CreativeGroupAssignment"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DefaultAd">
+    <complexContent>
+     <extension base="impl:AdBase">
+      <sequence>
+       <element name="creativeAssignment" nillable="true" type="impl:CreativeAssignment"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CreativeAd">
+    <complexContent>
+     <extension base="impl:TargetableAdBase">
+      <sequence>
+       <element name="clickThroughUrl" nillable="true" type="impl:ClickThroughUrl"/>
+       <element name="creativeGroupAssignment" nillable="true" type="impl:CreativeGroupAssignment"/>
+       <element name="creativeId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementSummary">
+    <complexContent>
+     <extension base="impl:PlacementBase">
+      <sequence>
+       <element name="lookbackWindow" nillable="true" type="impl:LookbackWindow"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ClickCommandInfo">
+    <sequence>
+     <element name="ad" nillable="true" type="impl:AdBase"/>
+     <element name="clickCommand" nillable="true" type="soapenc:string"/>
+     <element name="placement" nillable="true" type="impl:PlacementBase"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfClickCommandInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:ClickCommandInfo[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementTagInfo">
+    <sequence>
+     <element name="clickThroughUrlTag" nillable="true" type="soapenc:string"/>
+     <element name="iframeJavaScriptTag" nillable="true" type="soapenc:string"/>
+     <element name="imageRedirectUrlTag" nillable="true" type="soapenc:string"/>
+     <element name="internalRedirectTag" nillable="true" type="soapenc:string"/>
+     <element name="javaScriptTag" nillable="true" type="soapenc:string"/>
+     <element name="motifInstructions" nillable="true" type="soapenc:string"/>
+     <element name="placement" nillable="true" type="impl:PlacementBase"/>
+     <element name="prefetchTag" nillable="true" type="soapenc:string"/>
+     <element name="standardTag" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPlacementTagInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementTagInfo[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementTagData">
+    <sequence>
+     <element name="advertiser" nillable="true" type="impl:Advertiser"/>
+     <element name="campaign" nillable="true" type="impl:CampaignBase"/>
+     <element name="clickCommandInfos" nillable="true" type="impl:ArrayOfClickCommandInfo"/>
+     <element name="placementTagInfos" nillable="true" type="impl:ArrayOfPlacementTagInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementTagOption">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementTagOption">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementTagOption[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType abstract="true" name="SearchCriteriaBase">
+    <sequence>
+     <element name="ids" nillable="true" type="impl:ArrayOf_xsd_long"/>
+     <element name="searchString" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="PageableSearchCriteriaBase">
+    <complexContent>
+     <extension base="impl:SearchCriteriaBase">
+      <sequence>
+       <element name="pageNumber" type="xsd:int"/>
+       <element name="pageSize" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ActiveFilter">
+    <sequence>
+     <element name="activeOnly" type="xsd:boolean"/>
+     <element name="inactiveOnly" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="DateInterval">
+    <sequence>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="startDate" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="SortOrder">
+    <sequence>
+     <element name="descending" type="xsd:boolean"/>
+     <element name="fieldName" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementSearchCriteria">
+    <complexContent>
+     <extension base="impl:PageableSearchCriteriaBase">
+      <sequence>
+       <element name="archiveFilter" nillable="true" type="impl:ActiveFilter"/>
+       <element name="campaignIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="dfaSiteIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="endDateRange" nillable="true" type="impl:DateInterval"/>
+       <element name="placementFilter" type="xsd:int"/>
+       <element name="placementStrategyIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="placementTypeIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="pricingTypeIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="siteIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="sizeIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="sortOrder" nillable="true" type="impl:SortOrder"/>
+       <element name="startDateRange" nillable="true" type="impl:DateInterval"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType abstract="true" name="PagedRecordSet">
+    <sequence>
+     <element name="pageNumber" type="xsd:int"/>
+     <element name="totalNumberOfPages" type="xsd:int"/>
+     <element name="totalNumberOfRecords" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPlacement">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Placement[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementRecordSet">
+    <complexContent>
+     <extension base="impl:PagedRecordSet">
+      <sequence>
+       <element name="records" nillable="true" type="impl:ArrayOfPlacement"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementGroupSearchCriteria">
+    <complexContent>
+     <extension base="impl:PageableSearchCriteriaBase">
+      <sequence>
+       <element name="archiveFilter" nillable="true" type="impl:ActiveFilter"/>
+       <element name="campaignIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="dfaSiteIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="endDateRange" nillable="true" type="impl:DateInterval"/>
+       <element name="placementGroupFilter" type="xsd:int"/>
+       <element name="placementStrategyIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="pricingTypeIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="siteIds" nillable="true" type="impl:ArrayOf_xsd_long"/>
+       <element name="sortOrder" nillable="true" type="impl:SortOrder"/>
+       <element name="startDateRange" nillable="true" type="impl:DateInterval"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementGroup">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementGroup[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementGroupRecordSet">
+    <complexContent>
+     <extension base="impl:PagedRecordSet">
+      <sequence>
+       <element name="records" nillable="true" type="impl:ArrayOfPlacementGroup"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementUpdateRequest">
+    <sequence>
+     <element name="campaignId" type="xsd:long"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="flightingOption" type="xsd:int"/>
+     <element name="startDate" nillable="true" type="xsd:dateTime"/>
+     <element name="updateOption" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementUpdateResult">
+    <complexContent>
+     <extension base="impl:SaveResult">
+      <sequence>
+       <element name="errorMessage" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementUpdateResult">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementUpdateResult[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementUpdateResultSet">
+    <sequence>
+     <element name="inError" type="xsd:boolean"/>
+     <element name="result" nillable="true" type="impl:ArrayOfPlacementUpdateResult"/>
+    </sequence>
+   </complexType>
+   <complexType name="PlacementSummarySearchCriteria">
+    <complexContent>
+     <extension base="impl:PageableSearchCriteriaBase">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementSummary">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementSummary[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementSummaryRecordSet">
+    <complexContent>
+     <extension base="impl:PagedRecordSet">
+      <sequence>
+       <element name="records" nillable="true" type="impl:ArrayOfPlacementSummary"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PlacementType">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPlacementType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PlacementType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PricingType">
+    <complexContent>
+     <extension base="impl:Base">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPricingType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PricingType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPlacementSummaryRecordSetRequest">
+
+      <wsdl:part name="criteria" type="impl:PlacementSummarySearchCriteria">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPricingTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupRequest">
+
+      <wsdl:part name="id" type="xsd:long">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPricingTypesResponse">
+
+      <wsdl:part name="getPricingTypesReturn" type="impl:ArrayOfPricingType">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementsByCriteriaRequest">
+
+      <wsdl:part name="searchCriteria" type="impl:PlacementSearchCriteria">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupTypesResponse">
+
+      <wsdl:part name="getPlacementGroupTypesReturn" type="impl:ArrayOfPlacementGroupType">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInStreamVideoPlacementTagOptionsResponse">
+
+      <wsdl:part name="getInStreamVideoPlacementTagOptionsReturn" type="impl:ArrayOfPlacementTagOption">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updatePlacementsRequest">
+
+      <wsdl:part name="request" type="impl:PlacementUpdateRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementSummaryRecordSetResponse">
+
+      <wsdl:part name="getPlacementSummaryRecordSetReturn" type="impl:PlacementSummaryRecordSet">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updatePlacementsResponse">
+
+      <wsdl:part name="updatePlacementsReturn" type="impl:PlacementUpdateResultSet">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="savePlacementRequest">
+
+      <wsdl:part name="placement" type="impl:Placement">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deletePlacementRequest">
+
+      <wsdl:part name="id" type="xsd:long">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ApiException">
+
+      <wsdl:part name="fault" type="impl:ApiException">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementTagDataResponse">
+
+      <wsdl:part name="getPlacementTagDataReturn" type="impl:PlacementTagData">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterstitialPlacementTagOptionsResponse">
+
+      <wsdl:part name="getInterstitialPlacementTagOptionsReturn" type="impl:ArrayOfPlacementTagOption">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementRequest">
+
+      <wsdl:part name="id" type="xsd:long">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementsByCriteriaResponse">
+
+      <wsdl:part name="getPlacementsByCriteriaReturn" type="impl:PlacementRecordSet">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="deletePlacementGroupRequest">
+
+      <wsdl:part name="id" type="xsd:long">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMobilePlacementTagOptionsResponse">
+
+      <wsdl:part name="getMobilePlacementTagOptionsReturn" type="impl:ArrayOfPlacementTagOption">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementTagDataRequest">
+
+      <wsdl:part name="campaignId" type="xsd:long">
+
+      </wsdl:part>
+
+      <wsdl:part name="placementTagCriterias" type="impl:ArrayOfPlacementTagCriteria">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInStreamVideoPlacementTagOptionsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="savePlacementGroupResponse">
+
+      <wsdl:part name="savePlacementGroupReturn" type="impl:PlacementGroupSaveResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRegularPlacementTagOptionsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="deletePlacementGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deletePlacementResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupsByCriteriaRequest">
+
+      <wsdl:part name="searchCriteria" type="impl:PlacementGroupSearchCriteria">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementResponse">
+
+      <wsdl:part name="getPlacementReturn" type="impl:Placement">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementTypesResponse">
+
+      <wsdl:part name="getPlacementTypesReturn" type="impl:ArrayOfPlacementType">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMobilePlacementTagOptionsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupsByCriteriaResponse">
+
+      <wsdl:part name="getPlacementGroupsByCriteriaReturn" type="impl:PlacementGroupRecordSet">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRegularPlacementTagOptionsResponse">
+
+      <wsdl:part name="getRegularPlacementTagOptionsReturn" type="impl:ArrayOfPlacementTagOption">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getInterstitialPlacementTagOptionsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPlacementGroupResponse">
+
+      <wsdl:part name="getPlacementGroupReturn" type="impl:PlacementGroup">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="savePlacementGroupRequest">
+
+      <wsdl:part name="placementGroup" type="impl:PlacementGroup">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="savePlacementResponse">
+
+      <wsdl:part name="savePlacementReturn" type="impl:PlacementSaveResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PlacementRemote">
+
+      <wsdl:operation name="savePlacement" parameterOrder="placement">
+
+         <wsdl:input message="impl:savePlacementRequest" name="savePlacementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:savePlacementResponse" name="savePlacementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletePlacement" parameterOrder="id">
+
+         <wsdl:input message="impl:deletePlacementRequest" name="deletePlacementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deletePlacementResponse" name="deletePlacementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="savePlacementGroup" parameterOrder="placementGroup">
+
+         <wsdl:input message="impl:savePlacementGroupRequest" name="savePlacementGroupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:savePlacementGroupResponse" name="savePlacementGroupResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletePlacementGroup" parameterOrder="id">
+
+         <wsdl:input message="impl:deletePlacementGroupRequest" name="deletePlacementGroupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deletePlacementGroupResponse" name="deletePlacementGroupResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroupTypes">
+
+         <wsdl:input message="impl:getPlacementGroupTypesRequest" name="getPlacementGroupTypesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementGroupTypesResponse" name="getPlacementGroupTypesResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementTagData" parameterOrder="campaignId placementTagCriterias">
+
+         <wsdl:input message="impl:getPlacementTagDataRequest" name="getPlacementTagDataRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementTagDataResponse" name="getPlacementTagDataResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRegularPlacementTagOptions">
+
+         <wsdl:input message="impl:getRegularPlacementTagOptionsRequest" name="getRegularPlacementTagOptionsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getRegularPlacementTagOptionsResponse" name="getRegularPlacementTagOptionsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMobilePlacementTagOptions">
+
+         <wsdl:input message="impl:getMobilePlacementTagOptionsRequest" name="getMobilePlacementTagOptionsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMobilePlacementTagOptionsResponse" name="getMobilePlacementTagOptionsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterstitialPlacementTagOptions">
+
+         <wsdl:input message="impl:getInterstitialPlacementTagOptionsRequest" name="getInterstitialPlacementTagOptionsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getInterstitialPlacementTagOptionsResponse" name="getInterstitialPlacementTagOptionsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInStreamVideoPlacementTagOptions">
+
+         <wsdl:input message="impl:getInStreamVideoPlacementTagOptionsRequest" name="getInStreamVideoPlacementTagOptionsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getInStreamVideoPlacementTagOptionsResponse" name="getInStreamVideoPlacementTagOptionsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementsByCriteria" parameterOrder="searchCriteria">
+
+         <wsdl:input message="impl:getPlacementsByCriteriaRequest" name="getPlacementsByCriteriaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementsByCriteriaResponse" name="getPlacementsByCriteriaResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroupsByCriteria" parameterOrder="searchCriteria">
+
+         <wsdl:input message="impl:getPlacementGroupsByCriteriaRequest" name="getPlacementGroupsByCriteriaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementGroupsByCriteriaResponse" name="getPlacementGroupsByCriteriaResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updatePlacements" parameterOrder="request">
+
+         <wsdl:input message="impl:updatePlacementsRequest" name="updatePlacementsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updatePlacementsResponse" name="updatePlacementsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementSummaryRecordSet" parameterOrder="criteria">
+
+         <wsdl:input message="impl:getPlacementSummaryRecordSetRequest" name="getPlacementSummaryRecordSetRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementSummaryRecordSetResponse" name="getPlacementSummaryRecordSetResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroup" parameterOrder="id">
+
+         <wsdl:input message="impl:getPlacementGroupRequest" name="getPlacementGroupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementGroupResponse" name="getPlacementGroupResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementTypes">
+
+         <wsdl:input message="impl:getPlacementTypesRequest" name="getPlacementTypesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementTypesResponse" name="getPlacementTypesResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPricingTypes">
+
+         <wsdl:input message="impl:getPricingTypesRequest" name="getPricingTypesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPricingTypesResponse" name="getPricingTypesResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacement" parameterOrder="id">
+
+         <wsdl:input message="impl:getPlacementRequest" name="getPlacementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPlacementResponse" name="getPlacementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApiException" name="ApiException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="placementSoapBinding" type="impl:PlacementRemote">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="savePlacement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="savePlacementRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="savePlacementResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletePlacement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deletePlacementRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deletePlacementResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="savePlacementGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="savePlacementGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="savePlacementGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletePlacementGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deletePlacementGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deletePlacementGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroupTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementGroupTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementGroupTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementTagData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementTagDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementTagDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRegularPlacementTagOptions">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRegularPlacementTagOptionsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRegularPlacementTagOptionsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMobilePlacementTagOptions">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMobilePlacementTagOptionsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMobilePlacementTagOptionsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInterstitialPlacementTagOptions">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInterstitialPlacementTagOptionsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInterstitialPlacementTagOptionsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInStreamVideoPlacementTagOptions">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInStreamVideoPlacementTagOptionsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInStreamVideoPlacementTagOptionsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementsByCriteria">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementsByCriteriaRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementsByCriteriaResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroupsByCriteria">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementGroupsByCriteriaRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementGroupsByCriteriaResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updatePlacements">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updatePlacementsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updatePlacementsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementSummaryRecordSet">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementSummaryRecordSetRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementSummaryRecordSetResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacementTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPricingTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPricingTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPricingTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPlacement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPlacementRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPlacementResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApiException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ApiException" namespace="http://www.doubleclick.net/dfa-api/%(version)s" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PlacementRemoteService">
+
+      <wsdl:port binding="impl:placementSoapBinding" name="placement">
+
+         <wsdlsoap:address location="https://advertisersapi.doubleclick.com/%(version)s/api/dfa-api/placement"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

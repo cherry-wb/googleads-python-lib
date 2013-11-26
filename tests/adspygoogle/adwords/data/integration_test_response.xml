@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Header>
+<ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/%(version)s">
+<requestId>0004cedaee270e600a96b914000005cf</requestId>
+<serviceName>CampaignService</serviceName>
+<methodName>get</methodName>
+<operations>8</operations>
+<responseTime>318</responseTime>
+<units>5</units>
+</ResponseHeader>
+</soap:Header>
+<soap:Body>
+<getResponse xmlns="https://adwords.google.com/api/adwords/cm/%(version)s">
+<rval>
+<totalNumEntries>5</totalNumEntries>
+<Page.Type>CampaignPage</Page.Type>
+<totalBudget>
+<period>DAILY</period>
+<amount>
+<ComparableValue.Type>Money</ComparableValue.Type>
+<microAmount>0</microAmount>
+</amount>
+</totalBudget>
+<entries>
+<id>90835362</id>
+<name>Deleted on 20120927 07:45:35.088913</name>
+<status>DELETED</status>
+<campaignStats>
+<network>ALL</network>
+<Stats.Type>CampaignStats</Stats.Type>
+</campaignStats>
+<frequencyCap>
+<impressions>0</impressions>
+</frequencyCap>
+</entries>
+<entries>
+<id>90844362</id>
+<name>Interplanetary Cruise banner #52338591982792012</name>
+<status>PAUSED</status>
+<campaignStats>
+<network>ALL</network>
+<Stats.Type>CampaignStats</Stats.Type>
+</campaignStats>
+<frequencyCap>
+<impressions>0</impressions>
+</frequencyCap>
+</entries>
+<entries>
+<id>90844482</id>
+<name>Interplanetary Cruise #52254591982792012</name>
+<status>PAUSED</status>
+<campaignStats>
+<network>ALL</network>
+<Stats.Type>CampaignStats</Stats.Type>
+</campaignStats>
+<frequencyCap>
+<impressions>0</impressions>
+</frequencyCap>
+</entries>
+<entries>
+<id>91018842</id>
+<name>Campaign #218532375582892012</name>
+<status>PAUSED</status>
+<campaignStats>
+<network>ALL</network>
+<Stats.Type>CampaignStats</Stats.Type>
+</campaignStats>
+<frequencyCap>
+<impressions>0</impressions>
+</frequencyCap>
+</entries>
+<entries>
+<id>91019082</id>
+<name>Campaign #325634565682892012</name>
+<status>PAUSED</status>
+<campaignStats>
+<network>ALL</network>
+<Stats.Type>CampaignStats</Stats.Type>
+</campaignStats>
+<frequencyCap>
+<impressions>0</impressions>
+</frequencyCap>
+</entries>
+</rval>
+</getResponse>
+</soap:Body>
+</soap:Envelope>

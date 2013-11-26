@@ -1,0 +1,7 @@
+Unit tests to use with the client library. The appropriate unit test should be
+executed whenever you make changes to any of the core library's sources.
+
+Examples tests in the versioned folders should be executed against test
+accounts.
+
+The required data files are located in "data/".
