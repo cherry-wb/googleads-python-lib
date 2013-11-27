@@ -1,0 +1,161 @@
+
+DoubleClick for Advertisers API Python Client Library
+=====================================================
+
+The DoubleClick for Advertisers (DFA) API lets developers to build applications
+that interact directly with the DFA platform and perform a variety of
+trafficking and administrative tasks. It is particularly useful for automating
+recurring processes and for integrating DoubleClick for Advertisers with
+third-party systems.
+
+The DoubleClick for Advertisers (DFA) API is an API to manage your DFA account.
+Advertisers use DFA to create and organize campaigns consisting of hundreds or
+thousands of graphic ads, to serve these ads to specific websites, and to
+generate a variety of reports tracking cost, impressions, and clickthroughs.
+
+DoubleClick for Advertisers API Python Client Library makes it easier to write
+Python clients to programmatically access DFA accounts. One of the main features
+of this client library is that it hides SOAP layer from the end user, which
+makes it much easier to interact with API. The outgoing and incoming SOAP
+messages are monitored and logged on demand. The response headers like
+responseTime, requestId, etc. can also be logged on demand. Another nice feature
+of this client library is that it handles data types for all API call
+parameters. You no longer need to remember that Placement ID is of type long and
+placementType is int. Both of these variables can now be sent as simple strings
+when passing them as parameters. In fact, all variables are passed as either
+dict, list, or str. The conversion to the right type is handled internally by
+the client library.
+
+The client library provides support for SOAPpy a well known web services
+toolkit from http://pywebsvcs.sourceforge.net/. The client library will take
+care of proper type conversions, instantiation of classes, etc.
+
+Two modules are supported for parsing SOAP XML messages. By default, the client
+library uses the PyXML module in order to parse SOAP XML messages. In addition,
+the library also supports ElementTree module, which may be activated simply by
+setting the appropriate config value (i.e. config['xml_parser']). Note that if
+you already have an lxml module installed and wish to use ElementTree, you do
+not need to install ElementTree. The lxml module is mostly compatible with
+ElementTree. Also, if you have Python v2.5+, the ElementTree comes with it. The
+cElementTree module is now also supported.
+
+Although, there are projects out there that still support PyXML, it is no longer
+maintained. The last update for ElementTree library is dated 2007-09-12. Out of
+these three libraries, the lxml is the one that was updated most recently.
+
+PLEASE NOTE: Using ElementTree as your XML parser will cause your outgoing SOAP
+logs to not exactly match the XML that is actually being sent. For this reason,
+PyXML is strongly recommended.
+
+The code examples, located in "examples/", demonstrate how to use the client
+library. For additional examples, take a look at the unit tests in "tests/".
+
+Useful scripts are located in "scripts/" directory.
+
+The documentation was generated using Epydoc, a nice tool for generating API
+documentation for Python modules, and is located in "docs/".
+
+The client library includes a set of unit tests located in "tests/". All unit
+tests are (and should be) executed against the test environment. Whenever
+changes are made to the client library, the appropriate unit test should be
+executed to make sure that everything is working as intended and no new bugs
+were introduced.
+
+
+Announcements and updates
+-------------------------
+
+For API and client library updates and news, please follow our Google+ Ads
+Developers page:
+https://plus.google.com/+GoogleAdsDevelopers/posts
+
+and our Google Ads Developers blog:
+http://googleadsdeveloper.blogspot.com/
+
+
+How do I start?
+---------------
+
+Start by making sure that you have Python installed on your machine. Once that's
+taken care of, proceed to the step-by-step guide below. Write some code and
+enjoy!
+
+
+Step-by-step guide for accessing the DoubleClick network:
+---------------------------------------------
+
+1) If you don't currently have a DoubleClick for Advertisers account, contact
+   DoubleClick sales to look into accessing the network. You can reach them at
+   http://www.google.com/doubleclick/contact/advertisergeneral.html
+
+2) Request API access if your DFA account is not currently API-enabled at
+   http://www.google.com/support/dfa/bin/request.py?contact_type=dfa6api
+
+3) Make sure you have Python v2.4 or above installed. The latest stable version
+   can be fetched from http://www.python.org/.
+
+4) Install or update the library from PyPI. If you're using pip, this is as easy
+   as:
+
+   $ pip install [--upgrade] adspygoogle
+
+   If you don't want to install directly from PyPI, you can download the library
+   as a tarball and then install it manually. The download can be found here:
+   https://pypi.python.org/pypi/adspygoogle
+   Navigate to the directory that contains your downloaded unzipped client
+   library and run the "setup.py" script to install the "adspygoogle"
+   module.
+
+   $ python setup.py build install
+
+5) From the scripts/adspygoogle/dfa directory, run the "config.py" script to set
+   authentication headers. More information about the format of each header is
+   at https://developers.google.com/doubleclick-advertisers/docs/SOAP_headers
+   Example,
+
+   Your DFA account's username: JoeShmoe@dfa
+   OAuth 2.0 client ID: xxxxxxxxxxxxxx
+   OAuth 2.0 client secret: xxxxxxxxxxxxxx
+   OAuth 2.0 refresh token: xxxxxxxxxxxxxx
+
+   Select XML parser [1=PyXML, 2=ElementTree]: 1
+   Enable debugging mode [y/n]: n
+   Enable SOAP XML logging mode [y/n]: y
+   Enable API request logging mode [y/n]: y
+   Enter an application name: companyName-programName
+
+6) Read over the documentation in "docs/index.html" to familiarize yourself with
+   the API of the client library.
+
+
+Where do I submit bug reports and/or feature requests?
+------------------------------------------------------
+
+Use the issue tracker at:
+  https://github.com/googleads/googleads-python-lib/issues
+
+
+External Dependencies:
+----------------------
+
+    - Python v2.4+         -- http://www.python.org/
+    - PyXML v0.8.3+        -- http://sourceforge.net/projects/pyxml/
+                           or
+      ElementTree v1.2.6+  -- http://effbot.org/zone/element-index.htm
+                           or
+      cElementTree v1.0.6+ -- http://www.python.org/
+                           (part of the Python v2.5+)
+                           or
+      lxml v2.2+           -- http://codespeak.net/lxml/index.html
+    - Epydoc               -- http://epydoc.sourceforge.net/
+                           (only if you will be generating docs)
+    - fpconst              -- http://pypi.python.org/pypi/fpconst/#downloads
+    - Google Account       -- https://www.google.com/accounts/NewAccount
+
+
+Author:
+    api.sgrinberg@gmail.com (Stan Grinberg)
+    api.jdilallo@gmail.com (Joseph DiLallo)
+
+Maintainer:
+    api.jdilallo@gmail.com (Joseph DiLallo)

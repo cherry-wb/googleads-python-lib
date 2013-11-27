@@ -1,0 +1,7 @@
+This directory contains demo programs that show how to use the client library.
+
+The demo programs are on purpose written differently, to highlight various ways
+of performing similar tasks (i.e. initiating DfaClient object, reading auth info
+from a pickle, setting auth and config info at DfaClient initialization, etc.).
+
+For additional examples, see unittests in "../../../tests/".

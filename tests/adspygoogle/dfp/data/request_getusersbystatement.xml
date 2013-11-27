@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ZSI="http://www.zolera.com/schemas/ZSI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <SOAP-ENV:Header xmlns:ns1="https://www.google.com/apis/ads/publisher/v201004">
+  <ns1:RequestHeader>
+   <ns1:applicationName>xxxxxx</ns1:applicationName>
+   <ns1:authToken>xxxxxx</ns1:authToken>
+  </ns1:RequestHeader>
+ </SOAP-ENV:Header>
+ <SOAP-ENV:Body xmlns:ns1="https://www.google.com/apis/ads/publisher/v201004">
+  <ns1:getUsersByStatement>
+   <ns1:filterStatement>
+    <ns1:query>ORDER BY name LIMIT 500</ns1:query>
+   </ns1:filterStatement>
+  </ns1:getUsersByStatement>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,10 @@
+ad_type_id,xsi_type
+1,RotationGroup
+2,RotationGroup
+3,ClickTracker
+4,ClickTracker
+5,TrackingAd
+13,DefaultAd
+14,DefaultAd
+15,MobileAd
+16,DefaultAd

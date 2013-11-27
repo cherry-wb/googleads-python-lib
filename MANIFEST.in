@@ -1,0 +1,5 @@
+###############################################################################
+# Warning: Modifying this file may affect the files uploaded in the PyPI      #
+#           release.                                                          #
+###############################################################################
+include adspygoogle/*/data/*.csv pypi_description.txt

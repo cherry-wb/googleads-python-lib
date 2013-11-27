@@ -1,0 +1,69 @@
+2.4.1:
+- Bumped the common library version to 3.1.0. Support for OAuth 2.0 has been
+  improved and is now the preferred way of authenticating. Using legacy DFA
+  passwords will result in DeprecationWarnings. You can turn off these warnings:
+  see README.common for instructions.
+- The GenericDfaService class' __GenerateToken function has been renamed to
+  _GenerateToken.
+
+2.4.0:
+- Removed support for v1.18.
+- Added support for v1.20.
+
+2.3.3:
+- Bumped the common library version to 3.0.12. Error parsing now works correctly
+  for both XML parsers with pretty_xml on or off. All combinations of XML parser
+  to pretty_xml now return the same, correct errors.
+
+2.3.2:
+- Bumped the common library version to 3.0.10.
+
+2.3.1:
+- Picking up changes to common layer which fix issue 48.
+
+2.3.0:
+- Added support for v1.19. Removed support for v1.17.
+- Added support for OAuth2. See use_oauth2.py for example.
+
+2.2.1:
+- Updating user agent.
+
+2.2.0:
+- Added support for v1.18. Removed support for v1.15 and v1.16.
+- The deprecated version of the DFA API will no longer be supported.
+
+2.1.0:
+- Added support for v1.17, removed support for v1.14.
+- Added the library's signature to the application name header.
+- Changed DfaClient to support generic service creation. Services can be created
+  by calling GetService with the name of the service.
+- Enforces SSL encrypted connections to the DFA API.
+
+2.0.1:
+- Added support for receiving compressed HTTP messages from the DFA servers.
+
+2.0.0:
+- Added support for v1.16, removed support for v1.13.
+- Updated adspygoogle.common module to v3.0.3.
+- Removed individual service classes in favor of single GenericDfaService class.
+
+1.3.0:
+- Added support for v1.15, removed support for v1.12.
+- Updated adspygoogle.common module to v2.2.0.
+- Fixed issues 2 and 3 on the issue tracker.
+- Dates and floats will no longer be returned as tuples and floats. Instead,
+  they will be returned as strings like all other data types. The DfaUtils
+  function TransformDates is no longer automatically called on any data type.
+
+1.2.0:
+- Added support for v1.14, removed support for v1.11.
+- Added flags to turn off unit tests for the selected versions. By default,
+  tests for the deprecated version are turned off. These flags are located in
+  the DFA unit test's __init__.py module.
+
+1.1.0:
+- Updated adspygoogle.common module to v2.0.0.
+- Added support for validation against the WSDL.
+
+1.0.0:
+- Initial release.

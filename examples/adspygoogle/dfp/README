@@ -1,0 +1,7 @@
+This directory contains demo programs that show how to use the client library.
+
+The demo programs are on purpose written differently, to highlight various ways
+of performing similar tasks (i.e. initiating Client object, reading auth info
+from a pickle, setting auth and config info at Client initialization, etc.).
+
+For additional examples, see unittests in "../tests/".

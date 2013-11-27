@@ -1,0 +1,54 @@
+===========================================
+The Google Ads APIs Python Client Libraries
+===========================================
+
+The Google Ads APIs Python Client Libraries support the following products:
+
+* {{ adwords }}
+* {{ dfa }}
+* {{ dfp }}
+
+You can find more information about the Google Ads Python Client Libraries
+`here <https://github.com/googleads/googleads-python-lib/>`_.
+
+Installation
+============
+
+You have two options for installing the Ads Python Client Libraries:
+
+* Install with a tool such as pip::
+
+  $ sudo pip install adspygoogle
+
+* Install manually after downloading and extracting the tarball::
+
+  $ sudo python setup.py install
+
+Examples and Configuration Scripts
+==================================
+
+This package only provides the core components necessary to use the client
+libraries. If you would like to obtain example code for any of the included
+client libraries, you can find it on our
+`downloads page <https://github.com/googleads/googleads-python-lib/releases>`_.
+
+Known Issues
+============
+
+* The installation of PyXML and cElementTree will fail on Ubuntu 13.04. If you
+  are trying to install adspygoogle on Ubuntu 13.04, you should avoid installing
+  these dependencies. If you need to use either of these dependencies, there is
+  a work-around that can be found in
+  `this bug <https://bugs.launchpad.net/ubuntu/+source/python2.7/+bug/1238244/>`_.
+  Another alternative is to install manually and exclude these dependencies. To
+  do so, first download and extract the tarball below. In the root directory,
+  run the following command::
+
+  $ sudo python setup.py install --no_PyXML --no_cElementTree
+
+Contact Us
+==========
+
+Do you have an issue using the Ads Python Client Libraries? Or perhaps some
+feedback for how we can improve them? Feel free to let us know on our
+`issue tracker <https://github.com/googleads/googleads-python-lib/issues>`_.
